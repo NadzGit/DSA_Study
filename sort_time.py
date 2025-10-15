@@ -1,3 +1,12 @@
+import time
+def sortTimeUsing(sortf,A):
+    t = time.time()
+
+    sortf(A)
+
+    t = time.time()-t
+    print("Sorted in ", t, "seconds")
+
 def insertionSortC(A):
     B = A[:]
 
@@ -10,13 +19,5 @@ def insertionSortC(A):
         j += 1
 
     
-    print(B)
     
     return B
-
-
-insertionSortC([2,6,5,1,3,4])
-insertionSortC([1,5,2,3,6,1,23])
-insertionSortC([])
-insertionSortC([5,1,2,90,1,3,45,2])
-insertionSortC([2,8,1,20,422,12]) 
