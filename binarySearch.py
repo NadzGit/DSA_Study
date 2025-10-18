@@ -13,7 +13,7 @@ def binarySearch(A, target): # binary search
                 return pos
         elif A[mid] < target: # if num at the midpoint is less than the target, shift the lower bound up to the midpoint (+1 because we already evaluated the midpoint != target num)
                 i = mid + 1
-        elif A[mid] > target: # if num at midpoint is greater than the tartget, shift the upper bound down to the midpoint (-1 because midpoint != target num)
+        else: # if num at midpoint is greater than the tartget, shift the upper bound down to the midpoint (-1 because midpoint != target num)
                 j = mid -1
            
     return pos
