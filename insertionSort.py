@@ -1,27 +1,18 @@
-# insertion sort
-# the correct way to go about this is traversing an array BACKWARDS.
-# compare value (v) you want to insert with the already sorted elements on the LEFT
-# shift any elements that are larger than v to the RIGHT
-# by traversing backwards, we are able to avoid any overwriting
-# how? see below.
-
-# (we skipped the first couple sorts)
-# 1,3,65|21,3,1 <-- here, 21 is less than 65.
-# 1,3,65,65,|3,1 <-- we shift 65 to the right. it may appear that we have lost the value of 21, but it is saved in a variable passed to the function.
-# 1,3,21,65,|3,1 <-- 21 >= 3, so this is where we place 21.
-
 def insertionSort(A):
-    for i in range(1,len(A)):
+    for i in range(1,len(A)): # why do we start at 1? we start at one because we are constantly comparing v with the value before v:
+        # at the beginning of this loop it means we must compare v (A[1]) to A[0]. If the loop started at 0, we would be comparing the beginning
+        # to the end which makes no logical sense.
         insert(A[i],A,i)
 
-def insert(v, A, hi):
-    for i in range (hi-1,-1,-1):
-        if v >= A[i]:
-            A[i+1] = v
+def insert(v,A,hi):
+    for i in range(hi-1,-1,-1): # remember loops are non-inclusive: it will never hit A[-1]. The reason we go to -1 is because
+        # we want to be able to traverse backwards to (and including) 0.
+        if v >= A[i]: # check if the number you want to insert (v) is greater than or equal to the element directly to its left
+            A[i+1] = v # if it is greater, then store v directly to the right of the element we are comparing v to.
             return
-        A[i+1] = A[i]
-    A[0] = v
+        
+        A[i+1] = A[i] # if v is smaller than the element to its left, then shift that element to the right to make space for v later down the line
+    A[0] = v # if we get through the whole process and v is smaller than all the elements to its left and therefore the loop has not returned early at all,
+    # then v must be the smallest value so far, and we must place it at the beginning.
 
-A = [1,3,3,7,5]  
-insertionSort(A)
-print(A)
+    
